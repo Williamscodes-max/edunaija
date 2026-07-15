@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
