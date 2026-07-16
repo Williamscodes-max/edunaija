@@ -17,9 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage', 
+    'cloudinary_storage',
     'django.contrib.staticfiles',
-     'cloudinary', 
+    'cloudinary',
 
     # Third-party
     'rest_framework',
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.courses',
     'apps.quizzes',
-    'apps.certificates', 
+    'apps.certificates',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +65,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+# Default database — SQLite for local, overridden in production
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,40 +85,38 @@ TIME_ZONE = 'Africa/Lagos'
 USE_I18N = True
 USE_TZ = True
 
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
-
+# Cloudinary config
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
 
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
-}
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# Storage backends
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:5173",
-#     "http://127.0.0.1:5173",
-# ]
-CORS_ALLOW_CREDENTIALS = True
+# Custom user model
+AUTH_USER_MODEL = 'users.User'
 
+# CORS
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = os.getenv(
+    'CORS_ALLOWED_ORIGINS',
+    'http://localhost:5173,http://127.0.0.1:5173'
+).split(',')
+
+# DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -130,6 +129,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+# JWT
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
@@ -139,27 +139,17 @@ SIMPLE_JWT = {
 }
 
 # Admin branding
-ADMIN_SITE_HEADER = "EduNaija Admin"
-ADMIN_SITE_TITLE = "EduNaija LMS"
+ADMIN_SITE_HEADER = 'EduNaija Admin'
+ADMIN_SITE_TITLE = 'EduNaija LMS'
 
+# Paystack
+PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
+PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY')
+
+# Production overrides
 import dj_database_url
 if not DEBUG:
     DATABASES['default'] = dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
         conn_max_age=600,
     )
-
-
-AUTH_USER_MODEL = 'users.User'
-
-
-PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
-PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY')
-
-
-
-
-CORS_ALLOWED_ORIGINS = os.getenv(
-    'CORS_ALLOWED_ORIGINS',
-    'http://localhost:5173,http://127.0.0.1:5173'
-).split(',')
