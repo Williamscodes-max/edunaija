@@ -61,12 +61,20 @@ class CourseSerializer(serializers.ModelSerializer):
         read_only_fields = ['slug', 'instructor']
 
     def get_thumbnail_url(self, obj):
-        request = self.context.get('request')
-        if obj.thumbnail:
-            if request:
-                return request.build_absolute_uri(obj.thumbnail.url)
-            return f"http://127.0.0.1:8000{obj.thumbnail.url}"
-        return None
+        if not obj.thumbnail:
+            return None
+
+        url = obj.thumbnail.url
+
+        # Cloudinary already returns a complete URL
+        if url.startswith("http://") or url.startswith("https://"):
+            return url
+
+        request = self.context.get("request")
+        if request:
+            return request.build_absolute_uri(url)
+
+        return url
 
 class CourseDetailSerializer(CourseSerializer):
     sections = SectionSerializer(many=True, read_only=True)
