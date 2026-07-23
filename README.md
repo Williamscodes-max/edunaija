@@ -288,14 +288,11 @@ Williams Alayode
 
 Backend Developer | Django | React
 
-GitHub:
-https://github.com/YOUR_USERNAME
-
 LinkedIn:
-https://linkedin.com/in/YOUR_PROFILE
+https://www.linkedin.com/in/williams-alayode/
 
 Email:
-YOUR_EMAIL
+walayode@gmail.com
 
 ---
 
