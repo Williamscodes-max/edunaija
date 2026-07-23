@@ -237,7 +237,9 @@ const QuizPage = () => {
                 background: 'rgba(255,255,255,0.1)',
               }}
             >
-              <span className="text-4xl font-bold">{result.score}%</span>
+              <span className="text-4xl font-bold">
+              {Math.floor(Number(result.score))}%
+             </span>
               <span className="text-xs opacity-70 mt-1">Your Score</span>
             </div>
 
@@ -246,7 +248,7 @@ const QuizPage = () => {
               {[
                 { label: 'Correct', value: correctCount },
                 { label: 'Wrong', value: wrongCount },
-                { label: 'Marks', value: `${result.earned_marks}/${result.total_marks}` },
+                { label: 'Marks', value: `${Math.round(result.earned_marks)}/${result.total_marks}`,},
                 { label: 'Time', value: `${Math.floor(timeTaken / 60)}m ${timeTaken % 60}s` },
               ].map((s) => (
                 <div
@@ -278,9 +280,9 @@ const QuizPage = () => {
                     <p className="font-semibold text-gray-800 text-sm">
                       Q{i + 1}: {r.question_text}
                     </p>
-                    <p className="text-xs text-gray-400 mt-0.5">
-                      {r.marks_earned} / {r.total_marks} marks
-                    </p>
+                   <p className="text-xs text-gray-400 mt-0.5">
+                {Math.round(Number(r.marks_earned))} / {Math.round(Number(r.total_marks))} marks
+               </p>
                   </div>
                 </div>
                 <div className="ml-8">
@@ -398,8 +400,8 @@ if (phase === 'max_attempts' && maxAttemptsData) {
               <p className="text-sm text-gray-500">
                 Your best score was{' '}
                 <strong style={{ color: '#166534' }}>
-                  {maxAttemptsData.best_score}%
-                </strong>
+               {Math.round(Number(maxAttemptsData.best_score))}%
+</strong>
                 . Great work!
               </p>
             </>
@@ -413,7 +415,7 @@ if (phase === 'max_attempts' && maxAttemptsData) {
                 You've used all {maxAttemptsData.max_attempts} attempts.
                 Your best score was{' '}
                 <strong style={{ color: '#0f172a' }}>
-                  {maxAttemptsData.best_score}%
+                  {Math.round(Number(maxAttemptsData.best_score))}%
                 </strong>
                 . Review the course material and ask your instructor for help.
               </p>

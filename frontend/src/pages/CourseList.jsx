@@ -140,13 +140,10 @@ const CourseList = () => {
             <div key={course.id} className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
              {course.thumbnail_url || course.thumbnail ? (
   <img
-    src={course.thumbnail_url || getMediaUrl(course.thumbnail)}
-    alt={course.title}
-    className="w-full h-44 object-cover"
-    onError={(e) => {
-      e.target.style.display = 'none';
-    }}
-  />
+  src={course.thumbnail_url}
+  alt={course.title}
+  className="w-full h-44 object-cover border border-red-500"
+/>
 ) : (
   <div
     className="w-full h-44 flex items-center justify-center text-5xl"

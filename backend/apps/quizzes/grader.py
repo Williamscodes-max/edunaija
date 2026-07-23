@@ -120,7 +120,7 @@ def grade_attempt(attempt):
 
     # Calculate percentage score
     if total_marks > 0:
-        score_percentage = round((earned_marks / total_marks) * 100, 2)
+        score_percentage = round((earned_marks / total_marks) * 100)
     else:
         score_percentage = 0
 
