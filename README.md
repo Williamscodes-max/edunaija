@@ -1,260 +1,304 @@
-# 🎓 EduNaija — Nigerian Learning Management System
+# EduNaija
 
-> A full-stack Learning Management System built for the Nigerian market, where students learn, instructors teach, and knowledge grows.
+EduNaija is a Learning Management System (LMS) built with Django REST Framework and React. It allows instructors to create courses, organize lessons into sections, create quizzes, and manage students, while students can enroll in courses, track their learning progress, complete quizzes, and earn certificates after successfully completing a course.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-22c55e?style=for-the-badge)](https://edunaija-kohl.vercel.app)
-[![Django](https://img.shields.io/badge/Django-5.2-092E20?style=for-the-badge&logo=django)](https://www.djangoproject.com/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
-[![Paystack](https://img.shields.io/badge/Payments-Paystack-00C3F7?style=for-the-badge)](https://paystack.com/)
-
-**🔗 Live Demo:** [edunaija-kohl.vercel.app](https://edunaija-kohl.vercel.app)  
-**🔗 API:** [edunaija-backend-7b22.onrender.com/api/v1](https://edunaija-backend-7b22.onrender.com/api/v1)
+This project was built as part of my journey into full-stack software development to strengthen my backend development skills while also gaining experience integrating a modern React frontend with a Django REST API.
 
 ---
 
-## 📖 About
+## Live Demo
 
-EduNaija is a production-ready Learning Management System built to demonstrate advanced full-stack development skills. It features role-based authentication, a custom quiz engine with auto-grading, PDF certificate generation, Paystack payment integration, and real-time progress tracking — all wrapped in a clean, mobile-responsive design.
+Frontend:
+https://edunaija-kohl.vercel.app
 
-Built as a portfolio project to showcase backend complexity, algorithm design, and full deployment pipelines.
-
----
-
-## 🚀 Features
-
-### 👨‍🎓 Students
-
-- Register and login with JWT authentication
-- Browse and search courses by category and level
-- Enroll in free courses or pay for premium ones via Paystack
-- Watch video lessons and read text content
-- Mark lessons as complete with real-time progress tracking
-- Take auto-graded quizzes with instant feedback
-- Retake quizzes until passing the cut-off mark
-- Earn and download PDF certificates on course completion
-- Write reviews and rate courses
-- View personal dashboard with enrolled courses and progress
-
-### 👨‍🏫 Instructors
-
-- Register as an instructor
-- Create and manage courses with sections and lessons
-- Set course pricing (free or paid)
-- View analytics — enrollments, revenue, and ratings
-- Manage course content through admin panel
-
-### ⚙️ Backend Features
-
-- Custom User model with role-based access (Student/Instructor/Admin)
-- Quiz engine with 3 question types: Single Choice, Multiple Choice, True/False
-- Partial marking algorithm for multiple choice questions
-- Automatic course completion detection
-- PDF certificate generation using ReportLab
-- Unique certificate verification system (public URL)
-- Paystack payment initialization and verification
-- Cloudinary media storage for course thumbnails
-- JWT authentication with token refresh and blacklist
+Backend API:
+https://edunaija-backend-7b22.onrender.com
 
 ---
 
-## 🛠️ Tech Stack
+## Features
 
-| Layer              | Technology                           |
-| ------------------ | ------------------------------------ |
-| **Backend**        | Django 5.2 + Django REST Framework   |
-| **Frontend**       | React 18 + Vite + Tailwind CSS       |
-| **Database**       | PostgreSQL (Neon)                    |
-| **Auth**           | JWT (djangorestframework-simplejwt)  |
-| **Payments**       | Paystack                             |
-| **Media Storage**  | Cloudinary                           |
-| **PDF Generation** | ReportLab                            |
-| **Deployment**     | Render (backend) + Vercel (frontend) |
+### Student Features
 
----
+- User registration and authentication
+- Browse available courses
+- Free and paid course enrollment
+- Lesson progress tracking
+- Course completion tracking
+- Quiz attempts with instant grading
+- Multiple choice, single choice and True/False questions
+- Certificate generation after course completion
+- Student dashboard
+- Course reviews and ratings
 
-## 📸 Screenshots
+### Instructor Features
 
-### Homepage
+- Create and manage courses
+- Organize courses into sections
+- Create lessons
+- Upload course thumbnails
+- Create quizzes
+- Add different question types
+- View enrolled students
 
-![Homepage](screenshots/homepage.png)
+### Admin Features
 
-### Course List
-
-![Courses](screenshots/courses.png)
-
-### Course Detail
-
-![Course Detail](screenshots/course-detail.png)
-
-### Lesson Player
-
-![Lesson Player](screenshots/lesson-player.png)
-
-### Quiz Page
-
-![Quiz](screenshots/quiz.png)
-
-### Quiz Results
-
-![Quiz Results](screenshots/quiz-results.png)
-
-### Student Dashboard
-
-![Dashboard](screenshots/dashboard.png)
-
-### Certificate
-
-![Certificate](screenshots/certificate.png)
-
-### Instructor Dashboard
-
-![Instructor](screenshots/instructor.png)
+- Manage users
+- Manage instructors
+- Publish or unpublish courses
+- Upload course images
+- Manage quizzes
+- Manage certificates
+- Manage categories
 
 ---
 
-## 🏃 Running Locally
+## Tech Stack
 
-### Prerequisites
+### Backend
 
-- Python 3.11+
-- Node.js 18+
-- Git
+- Python
+- Django
+- Django REST Framework
+- PostgreSQL
+- Simple JWT
+- Cloudinary
+- ReportLab
+- Paystack API
 
-### Backend Setup
+### Frontend
+
+- React
+- React Router
+- Axios
+- Tailwind CSS
+- React Hot Toast
+
+### Deployment
+
+Backend: Render
+
+Frontend: Vercel
+
+Media Storage: Cloudinary
+
+Database: PostgreSQL
+
+---
+
+## Main Functionality
+
+### Authentication
+
+The application uses JWT authentication with access and refresh tokens.
+
+Users are assigned different roles which determine what actions they can perform within the application.
+
+---
+
+### Courses
+
+Courses are organized into sections and lessons.
+
+Each course can contain:
+
+- Videos
+- Reading materials
+- Quizzes
+- Completion tracking
+
+Students can continue learning from where they previously stopped.
+
+---
+
+### Quiz System
+
+The quiz module supports:
+
+- Single Choice questions
+- Multiple Choice questions
+- True/False questions
+
+Features include:
+
+- Automatic grading
+- Multiple attempts
+- Pass score configuration
+- Time limits
+- Instant feedback
+- Answer explanations
+- Progress tracking
+
+---
+
+### Certificates
+
+Students who complete all lessons and successfully pass the course quiz can generate a PDF certificate.
+
+Certificates include a unique verification ID.
+
+---
+
+### Payments
+
+Premium courses are integrated with Paystack for payment processing.
+
+After successful payment, students are automatically enrolled in the course.
+
+---
+
+## Project Structure
+
+```
+backend/
+    apps/
+        accounts/
+        certificates/
+        courses/
+        quizzes/
+        payments/
+
+frontend/
+    src/
+        components/
+        pages/
+        context/
+        hooks/
+        api/
+```
+
+---
+
+## Running the Project
+
+### Clone the repository
 
 ```bash
-# Clone the repo
 git clone https://github.com/YOUR_USERNAME/edunaija.git
-cd edunaija
+```
 
-# Create and activate virtual environment
-python3 -m venv venv
+### Backend
+
+```bash
+cd backend
+
+python -m venv venv
+
 source venv/bin/activate
 
-# Install dependencies
-cd backend
 pip install -r requirements.txt
 
-# Create .env file
-cp .env.example .env
-# Fill in your environment variables
-
-# Run migrations
 python manage.py migrate
 
-# Create superuser
 python manage.py createsuperuser
 
-# Start server
 python manage.py runserver
 ```
 
-### Frontend Setup
+### Frontend
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
-Create a `.env` file in the root directory:
+Create a `.env` file for the backend.
+
+Example:
 
 ```env
-SECRET_KEY=your-django-secret-key
+SECRET_KEY=
+
 DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
-DATABASE_URL=your-postgresql-url
-PAYSTACK_SECRET_KEY=sk_test_your_key
-PAYSTACK_PUBLIC_KEY=pk_test_your_key
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-FRONTEND_URL=http://localhost:5173
-CORS_ALLOWED_ORIGINS=http://localhost:5173
+
+DATABASE_URL=
+
+PAYSTACK_SECRET_KEY=
+
+PAYSTACK_PUBLIC_KEY=
+
+CLOUDINARY_CLOUD_NAME=
+
+CLOUDINARY_API_KEY=
+
+CLOUDINARY_API_SECRET=
 ```
 
 ---
 
-## 🔌 API Endpoints
+## Screenshots
 
-### Authentication
+The screenshots below show different parts of the application.
 
-| Method | Endpoint                 | Description                |
-| ------ | ------------------------ | -------------------------- |
-| POST   | `/api/v1/auth/register/` | Register new user          |
-| POST   | `/api/v1/auth/login/`    | Login and get JWT tokens   |
-| POST   | `/api/v1/auth/logout/`   | Logout and blacklist token |
-| GET    | `/api/v1/auth/profile/`  | Get user profile           |
+- Homepage
+- Course List
+- Course Details
+- Lesson Player
+- Quiz Page
+- Quiz Result
+- Student Dashboard
+- Certificate
+- Instructor Dashboard
 
-### Courses
-
-| Method | Endpoint                                | Description                |
-| ------ | --------------------------------------- | -------------------------- |
-| GET    | `/api/v1/courses/`                      | List all published courses |
-| GET    | `/api/v1/courses/:slug/`                | Get course detail          |
-| GET    | `/api/v1/courses/categories/`           | List categories            |
-| POST   | `/api/v1/courses/:id/enroll/`           | Enroll in free course      |
-| POST   | `/api/v1/courses/:id/pay/`              | Initiate course payment    |
-| POST   | `/api/v1/courses/payment/verify/`       | Verify payment             |
-| GET    | `/api/v1/courses/my/enrollments/`       | Get student enrollments    |
-| POST   | `/api/v1/courses/lessons/:id/complete/` | Mark lesson complete       |
-
-### Quizzes
-
-| Method | Endpoint                               | Description          |
-| ------ | -------------------------------------- | -------------------- |
-| POST   | `/api/v1/quizzes/:id/start/`           | Start a quiz attempt |
-| POST   | `/api/v1/quizzes/attempts/:id/submit/` | Submit quiz answers  |
-| GET    | `/api/v1/quizzes/:id/attempts/`        | Get quiz attempts    |
-
-### Certificates
-
-| Method | Endpoint                                 | Description          |
-| ------ | ---------------------------------------- | -------------------- |
-| POST   | `/api/v1/certificates/issue/:course_id/` | Issue certificate    |
-| GET    | `/api/v1/certificates/download/:uuid/`   | Download PDF         |
-| GET    | `/api/v1/certificates/my/`               | List my certificates |
-| GET    | `/api/v1/certificates/verify/:uuid/`     | Verify certificate   |
+(Images will be added.)
 
 ---
 
-## 🧮 Quiz Grading Algorithm
+## Challenges
 
-EduNaija uses a custom grading engine (`apps/quizzes/grader.py`) that supports:
+Some of the challenges encountered while building this project included:
 
-- **Single Choice**: Full marks for correct answer, zero otherwise
-- **True/False**: Same as single choice
-- **Multiple Choice**: Partial marking with penalty for wrong selections
-  - Score = `(correct_selected / total_correct) * marks - (wrong_selected / total_wrong) * marks`
-  - Minimum score per question is always 0 (no negative marking)
+- Designing a flexible quiz grading system
+- Implementing partial scoring for multiple-choice questions
+- Handling quiz attempts and progress tracking
+- Integrating Paystack payments
+- Configuring Cloudinary media storage
+- Deploying the backend on Render and frontend on Vercel
+- Managing authentication between the frontend and backend
 
----
-
-## 🚀 Deployment
-
-| Service  | Platform        | URL                                        |
-| -------- | --------------- | ------------------------------------------ |
-| Backend  | Render          | https://edunaija-backend-7b22.onrender.com |
-| Frontend | Vercel          | https://edunaija-kohl.vercel.app           |
-| Database | Neon PostgreSQL | —                                          |
-| Media    | Cloudinary      | —                                          |
+Working through these challenges helped me gain a deeper understanding of API design, authentication, deployment, and state management.
 
 ---
 
-## 👨‍💻 Author
+## Future Improvements
 
-**Alayode Williams**  
-Full-Stack Developer | Django + React  
-📧 [your-email@gmail.com]  
-🔗 [LinkedIn](https://linkedin.com/in/your-profile)  
-🐙 [GitHub](https://github.com/YOUR_USERNAME)
+Some features I would like to add in future versions include:
+
+- Email notifications
+- Discussion forums
+- Assignment submission
+- Instructor analytics dashboard
+- Course recommendations
+- Dark mode
+- Live classes
+- Video streaming support
 
 ---
 
-## 📄 License
+## Author
 
-MIT License — feel free to use this project as inspiration for your own!
+Williams Alayode
+
+Backend Developer | Django | React
+
+GitHub:
+https://github.com/YOUR_USERNAME
+
+LinkedIn:
+https://linkedin.com/in/YOUR_PROFILE
+
+Email:
+YOUR_EMAIL
+
+---
+
+## License
+
+This project is available under the MIT License.
